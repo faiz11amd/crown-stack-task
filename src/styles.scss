@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.cat-name {
+    cursor: pointer;
+}
+
+
+.p-y-5 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.fs-20 {
+    font-size: 20px;
+}
+
+.f-s-14 {
+    font-size: 14rem;
+}

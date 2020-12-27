@@ -1,0 +1,24 @@
+<div class="p-y-5 bg-light">
+    <label for="Equipment Catalog" class="fs-20 pl-5"><a routerLink="/category">Equipment Catalog</a> / Booms</label>
+    <ul class="row mx-5">
+
+        <li *ngFor="let cat of subCategory?.subcategories" class="col-xl-3 col-lg-4 col-md-6 col-sm-12 pt-5 list-inline">
+            <div layout-gt-xs="row">
+                <mat-card>
+                    <img mat-card-image class="border-bottom" src='{{"assets/category/subcategory/" + cat?.image }}'
+                    onerror="this.onerror=null;this.src='assets/invalid-image.png';"
+                    />
+                    <mat-card-title class="cat-name">{{ cat?.name }}
+                        <i class="fa fa-caret-right float-right"></i>
+                    </mat-card-title>
+
+                    <mat-card-content>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+        </li>
+
+    </ul>
+
+</div>
