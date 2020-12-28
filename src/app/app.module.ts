@@ -12,7 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatCardModule } from '@angular/material/card';
-import { AuthGuard } from './services/guards/authGuards.service';
+import { AuthGuard } from './core/guard/auth.guard.service';
 
 @NgModule({
   declarations: [

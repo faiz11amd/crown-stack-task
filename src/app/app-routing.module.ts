@@ -3,15 +3,12 @@ import { CategoryComponent } from './components/category/category.component';
 import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './services/guards/authGuards.service';
+import { AuthGuard } from './core/guard/auth.guard.service';
 
 const routes: Routes = [
   {
     path: '', redirectTo: "home", pathMatch: "full"
   },
-  // {
-  //   path: '**', component: HomeComponent
-  // },
   {
     path: "home", component: HomeComponent
   },
@@ -25,6 +22,9 @@ const routes: Routes = [
     component: CategoryDetailComponent,
     canActivate: [AuthGuard],
 
+  },
+  {
+    path: '**', redirectTo:'home'
   }
 ];
 
