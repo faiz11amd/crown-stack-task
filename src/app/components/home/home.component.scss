@@ -4,3 +4,17 @@
     font-weight: 600;
     font-size: 20px;
 }
+
+.parent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.child {
+    margin: auto;
+}

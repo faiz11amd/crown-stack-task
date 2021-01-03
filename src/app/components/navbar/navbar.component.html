@@ -9,7 +9,7 @@
     <ul class="navbar-nav ml-auto">
 
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> {{ selectedLoc }} </a>
+        <a (click)="fetchLocationApi()" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"> {{ selectedLoc }} </a>
         <ul class="dropdown-menu">
           <li *ngFor="let cat of catalog?.locations">
             <a (click)="catSelect(cat)" class="dropdown-item" routerLink="/"> {{ cat.name }} </a>

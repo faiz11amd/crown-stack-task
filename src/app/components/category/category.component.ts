@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Category } from 'src/app/core/model/catalog.model';
 import { ApiService } from 'src/app/core/service/api.service';
+import {takeWhile} from 'rxjs/operators';
 
 @Component({
   selector: 'app-category',
@@ -10,15 +12,24 @@ import { ApiService } from 'src/app/core/service/api.service';
 })
 
 export class CategoryComponent implements OnInit, OnDestroy {
-  public category: any;
-  private navbarSubscription: Subscription;
+  public category: Category[];
+  // private navbarSubscription: Subscription;
+  public isAlive = true;
   constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
-    this.navbarSubscription = this.apiService.getNavbarEvent.subscribe(() => {
-        this.filterCat();
-     })
+    // this.navbarSubscription = this.apiService.getNavbarEvent.subscribe(() => {
+    //     this.filterCat();
+    //  })
+    this.apiService.getNavbarEvent.pipe(takeWhile(()=> this.isAlive)).subscribe((res) => {
+      this.filterCat();
+   })
     this.filterCat();
+  }
+
+  ngOnDestroy(){
+    // this.navbarSubscription.unsubscribe();
+    this.isAlive = false
   }
 
   private filterCat() {
@@ -45,7 +56,5 @@ export class CategoryComponent implements OnInit, OnDestroy {
     val ? this.router.navigate(['/category-detail']) : null;
   }
 
-  ngOnDestroy(){
-    this.navbarSubscription.unsubscribe();
-  }
+
 }

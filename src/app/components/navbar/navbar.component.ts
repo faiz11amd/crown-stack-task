@@ -1,7 +1,9 @@
+import { SnackbarService } from './../../shared/snackbar/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { CatalogDataModel } from 'src/app/core/model/catalog.model';
+import { Store } from '@ngrx/store';
 import { ApiService } from 'src/app/core/service/api.service';
+import { RootReducerState } from 'src/app/store';
 
 @Component({
   selector: 'app-navbar',
@@ -11,14 +13,23 @@ import { ApiService } from 'src/app/core/service/api.service';
 export class NavbarComponent implements OnInit {
   public catalog: any;
   public selectedLoc: any;
-  constructor(private apiService: ApiService, private router: Router) { }
+  constructor(private store: Store<RootReducerState>, private apiService: ApiService, private router: Router, private snackbar: SnackbarService) { }
 
   ngOnInit(): void {
-    this.apiService.getCatalogData.subscribe((res: CatalogDataModel) => {
-      this.catalog = res.data;
-    });
+    // this.apiService.getCatalogData.subscribe((res: CatalogDataModel) => {
+    //   this.catalog = res.data;
+    // });
+
     this.catSelect();
   }
+
+  fetchLocationApi() {
+    this.apiService.getAllLocations().subscribe((res)=>{
+      this.catalog = res.data;
+      this.snackbar.openSnackBar("Data Fetch Successfully", "Undo");
+    })
+  }
+
 
   public catSelect(val?) {
     val ? localStorage.setItem("locationOrBranch", JSON.stringify(val)) : null;
