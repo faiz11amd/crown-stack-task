@@ -1,9 +1,7 @@
 import { SnackbarService } from './../../shared/snackbar/snackbar.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Store } from '@ngrx/store';
 import { ApiService } from 'src/app/core/service/api.service';
-import { RootReducerState } from 'src/app/store';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +11,7 @@ import { RootReducerState } from 'src/app/store';
 export class NavbarComponent implements OnInit {
   public catalog: any;
   public selectedLoc: any;
-  constructor(private store: Store<RootReducerState>, private apiService: ApiService, private router: Router, private snackbar: SnackbarService) { }
+  constructor(private apiService: ApiService, private router: Router, private snackbar: SnackbarService) { }
 
   ngOnInit(): void {
     // this.apiService.getCatalogData.subscribe((res: CatalogDataModel) => {
